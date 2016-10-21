@@ -51,10 +51,16 @@ public class MetricsCreator {
 			wmc.printResult();
 		}
 		
-		if(metric == 2){
+		else if(metric == 2){
 			DepthOfInheritance dit = new DepthOfInheritance(classes);
 			dit.calculateDIT();
 			dit.printResult();
+		}
+		
+		else if(metric == 3){
+			NumberOfChildren noc = new NumberOfChildren(classes);
+			noc.calculateNOC();
+			noc.printResult();
 		}
 		
 		classes.clear();

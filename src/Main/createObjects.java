@@ -25,7 +25,8 @@ public class createObjects {
 			System.out.println("Please choose the analyzer you would like to run.");
 			System.out.println("1. WMC?");
 			System.out.println("2. DIT?");
-			System.out.println("3. Class Diagram?");
+			System.out.println("3. NOC?");
+			System.out.println("4. Class Diagram?");
 
 			Scanner scan = new Scanner(System.in);
 			String input = scan.nextLine();
@@ -35,6 +36,8 @@ public class createObjects {
 			} else if (input.equals("2")) {
 				MetricsCreator.setUpCompilationUnit(files, 2);
 			} else if (input.equals("3")){
+				MetricsCreator.setUpCompilationUnit(files, 3);
+			} else if (input.equals("4")){
 				ClassDiagram.setUpCompilationUnit(files);
 			} else if (input.toLowerCase().equals("q")) {
 				System.out.println("Bye!");
