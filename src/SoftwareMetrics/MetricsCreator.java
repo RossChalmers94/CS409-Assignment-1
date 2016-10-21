@@ -1,6 +1,9 @@
 package SoftwareMetrics;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,12 +22,18 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 public class MetricsCreator {
 
+	private static ArrayList<File> filesForUse = new ArrayList<File>();
 	private static ArrayList<ClassOrInterfaceDeclaration> classes = new ArrayList<ClassOrInterfaceDeclaration>();
 	private static ArrayList<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
+	
 
-	public static void main(String[] args) throws Exception {
+	public static void setUpCompilationUnit(ArrayList<File> files, int metric) throws Exception {
 		// creates an input stream for the file to be parsed
-		FileInputStream in = new FileInputStream("JavaFilesNew/Test.java");
+		
+		filesForUse = files;
+		System.out.println(filesForUse);
+		for(File file : filesForUse){
+		FileInputStream in = new FileInputStream(file);
 		CompilationUnit cu;
 		try {
 			// parse the file
@@ -36,30 +45,21 @@ public class MetricsCreator {
 		// visit and print the methods names
 		new MetricsVisitor().visit(cu, null);
 		
-		Boolean stop = false;
-		while(!stop){
-
-		System.out.println("Type the number of the Metric you would like to run.");
-		System.out.println("1. WMC?");
-		System.out.println("2. DIT?");
-
-		Scanner scan = new Scanner(System.in);
-		String input = scan.nextLine();
-
-		if (input.equals("1")) {
+		if(metric == 1){
 			WeightedMethods wmc = new WeightedMethods(classes, methods);
 			wmc.calculateWMC();
 			wmc.printResult();
-		} else if (input.equals("2")) {
+		}
+		
+		if(metric == 2){
 			DepthOfInheritance dit = new DepthOfInheritance(classes);
 			dit.calculateDIT();
 			dit.printResult();
-		} else if(input.toLowerCase().equals("q")){
-			System.out.println("Bye!");
-			break;
-		}else {
-			System.out.println("Enter your number only please.");
 		}
+		
+		classes.clear();
+		methods.clear();
+		
 		}
 
 	}

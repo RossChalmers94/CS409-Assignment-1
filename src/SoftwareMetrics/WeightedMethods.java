@@ -57,6 +57,9 @@ public class WeightedMethods {
 						+ "Congratulations!\n");
 			}
 		}
+		
+		weightedMethods.clear();
+		methodCounter = 0;
 	}
 
 }

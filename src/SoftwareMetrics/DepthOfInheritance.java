@@ -65,6 +65,8 @@ public class DepthOfInheritance {
 			}
 			inheritanceDepthCounter = 1;
 		}
+		
+		classValues.clear();
 	}
 
 }
