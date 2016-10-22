@@ -1,4 +1,4 @@
-package SoftwareMetrics;
+package softwareMetrics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +41,6 @@ public class WeightedMethods {
 		
 	public void printResult(){
 		
-		System.out.println("This is a calculation of the Weighted Methods Per Class.\n");
 		for(int i = 0; i < weightedMethods.size(); i++){
 			Object[] keys = weightedMethods.keySet().toArray();
 			ClassOrInterfaceDeclaration classValue = (ClassOrInterfaceDeclaration) keys[i];

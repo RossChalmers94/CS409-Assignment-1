@@ -1,4 +1,4 @@
-package ClassDiagram;
+package classDiagram;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,6 +38,7 @@ public class ClassDiagram {
         // visit and print the methods names
         new ClassDiagramVisitor().visit(cu, null);
 		}
+		
         ClassDiagramCreator diagram = new ClassDiagramCreator(classes, fields, methods);
         diagram.classDiagramPrinter();
         

@@ -1,4 +1,4 @@
-package ClassDiagram;
+package classDiagram;
 
 import java.util.ArrayList;
 import java.util.HashMap;

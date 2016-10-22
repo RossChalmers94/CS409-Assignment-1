@@ -50,7 +50,7 @@ public class SquareGizmo implements GizmoInterface{
 		
 	}
 
-	public SquareGizmo getRect() {
+	public SquareGizmo getRect(String test, String test1, String test2, String test3) {
 		return new SquareGizmo(xpos, ypos);
 	}
 	
@@ -64,7 +64,7 @@ public class SquareGizmo implements GizmoInterface{
 	public LineSegment getLineleft() {
 		return lleft;
 	}
-	public LineSegment getLineright() {
+	public LineSegment getLineright(String test, String test1, String test2, String test3) {
 		return lright;
 	}
 
@@ -83,7 +83,7 @@ public class SquareGizmo implements GizmoInterface{
 	
 
 	
-	public Color getColour() {
+	public Color getColour(String test, String test1, String test2, String test3) {
 		return colour;
 	}
 

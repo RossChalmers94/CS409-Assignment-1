@@ -1,4 +1,4 @@
-package SoftwareMetrics;
+package softwareMetrics;
 
 import java.util.ArrayList;
 import java.util.HashMap;

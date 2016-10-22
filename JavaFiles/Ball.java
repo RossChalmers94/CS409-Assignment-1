@@ -4,7 +4,7 @@ public class Ball {
    
    private double radius;
    
-   private void setRadius(double value) {
+   private void setRadius(double value, String test, String test1) {
       this.radius = value;
    }
    
@@ -14,7 +14,7 @@ public class Ball {
    
    private double xpos;
    
-   private void setXpos(double value) {
+   private void setXpos(double value, String test, String test1) {
       this.xpos = value;
    }
    
@@ -24,7 +24,7 @@ public class Ball {
    
    private double ypos;
    
-   private void setYpos(double value) {
+   private void setYpos(double value, String test, String test1) {
       this.ypos = value;
    }
    
@@ -34,7 +34,7 @@ public class Ball {
    
    private String  velocity;
    
-   private void setVelocity(String value) {
+   private void setVelocity(String value, String test, String test1) {
       this.velocity = value;
    }
    

@@ -54,7 +54,7 @@ public class TriangleGizmo implements GizmoInterface {
 		p = new Polygon(xList, yList, 3);
 	}
 	
-	public TriangleGizmo getTriangle() {
+	public TriangleGizmo getTriangle(String test, String test1, String test2, String test3) {
 		return new TriangleGizmo(xpos ,ypos);
 	}
 
@@ -66,7 +66,7 @@ public class TriangleGizmo implements GizmoInterface {
 	public LineSegment getRightTriangle() {
 		return lright;
 	}
-	public LineSegment getBottomTriangle() {
+	public LineSegment getBottomTriangle(String test, String test1, String test2, String test3) {
 		return lbottom;
 	}
 	
@@ -82,7 +82,7 @@ public class TriangleGizmo implements GizmoInterface {
 		return xpoints;
 	}
 	
-	public int[] getyPoints() {
+	public int[] getyPoints(String test, String test1, String test2, String test3) {
 		return ypoints;
 	}
 
