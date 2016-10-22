@@ -12,12 +12,9 @@ import SoftwareMetrics.MetricsCreator;
 public class createObjects {
 
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		// creates an input stream for the file to be parsed
 
-		File filePath = new File("JavaFilesNew");
+		File filePath = new File("JavaFiles");
 		ArrayList<File> files = FileReader.readFiles(filePath);
-		System.out.println(files);
 
 		Boolean stop = false;
 		while (!stop) {

@@ -27,5 +27,3 @@ public class Gizmo {
    }
    
    }
-
-// im here and somebody should comment here on this class too

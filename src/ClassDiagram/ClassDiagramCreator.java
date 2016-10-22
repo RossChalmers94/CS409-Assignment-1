@@ -10,6 +10,7 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 
 public class ClassDiagramCreator {
 	
@@ -39,7 +40,7 @@ public class ClassDiagramCreator {
 				ClassOrInterfaceDeclaration c = (ClassOrInterfaceDeclaration) f.getParentNode();
 				if(c.getName().equals(classes.get(i).getName())){
 					emptyFields = false;
-					System.out.println(getFieldAttributes(c, f));
+					System.out.println(getFieldAttributes(classes.get(i), f));
 			}
 			}
 				
@@ -51,34 +52,13 @@ public class ClassDiagramCreator {
 			for(MethodDeclaration m : methods){
 				ClassOrInterfaceDeclaration c = (ClassOrInterfaceDeclaration) m.getParentNode();
 				if(c.getName().equals(classes.get(i).getName())){
-					for(Modifier mod : m.getModifiers())
-					{
-						if(mod.toString().equals(PRIVATE_MODIFIER)){
-							System.out.print("- ");
-						} else if(mod.toString().equals(PUBLIC_MODIFIER)){
-							System.out.print("+ ");
-						} else {
-							System.out.print("# ");
-						}
-						
-					}
-
-					System.out.print(m.getName());
-					System.out.print(" : ");
-					System.out.print(m.getElementType().toString());
-					System.out.print(" (");
-					for(int j = 0; j < m.getParameters().size(); j++){
-						Parameter p = m.getParameters().get(j);
-						if(j == m.getParameters().size()-1){
-							System.out.print(p.getName() + ": " + p.getElementType());
-						}
-						else {
-							System.out.print(p.getName() + ": " + p.getElementType() + ", ");
-						}
-					}
-					System.out.print(")\n");
+					System.out.println(getMethodAttributes(classes.get(i), m));
 				}
 			}
+			
+			System.out.println("---------------------------");
+			
+			System.out.println(getClassRelationships(classes.get(i)));
 			
 			System.out.println("---------------------------");
 			
@@ -149,22 +129,44 @@ public class ClassDiagramCreator {
 			
 		}
 
-		toReturn.append(m.getName() + " : " + m.getElementType().toString() + " (");
-		for(int j = 0; j < m.getParameters().size(); j++){
-			Parameter p = m.getParameters().get(j);
-			if(j == m.getParameters().size()-1){
-				toReturn.append(p.getName() + ": " + p.getElementType());
+		toReturn.append(m.getName() + " : " + m.getElementType().toString());
+		if(m.getParameters().size() != 0){
+			toReturn.append(" (");
+			for(int j = 0; j < m.getParameters().size(); j++){
+				Parameter p = m.getParameters().get(j);
+				if(j == m.getParameters().size()-1){
+					toReturn.append(p.getName() + ": " + p.getElementType());
+				}
+				else {
+					toReturn.append(p.getName() + ": " + p.getElementType() + ", ");
+				}
 			}
-			else {
-				toReturn.append(p.getName() + ": " + p.getElementType() + ", ");
-			}
-			
 			toReturn.append(")");
 		}
 		
 		return toReturn.toString();
 	}
 	
+	private String getClassRelationships(ClassOrInterfaceDeclaration c){
+		
+		StringBuffer toReturn = new StringBuffer();
+		String parent = "N/A";
+		String inherits = "N/A";
+		
+		for(ClassOrInterfaceType parentValue : c.getImplements()){
+			parent = parentValue.getName().toString();
+		}
+		
+		for(ClassOrInterfaceType inherit : c.getExtends()){
+			inherits = inherit.getName().toString();
+		}
+		
+		toReturn.append("Generalisation : " + parent + "\nRealisation : " + inherits);
+		
+		return toReturn.toString();
+		
+		
+	}
 	
 			
 		

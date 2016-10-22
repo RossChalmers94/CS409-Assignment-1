@@ -37,9 +37,9 @@ public class ClassDiagram {
 
         // visit and print the methods names
         new ClassDiagramVisitor().visit(cu, null);
+		}
         ClassDiagramCreator diagram = new ClassDiagramCreator(classes, fields, methods);
         diagram.classDiagramPrinter();
-		}
         
          
     }

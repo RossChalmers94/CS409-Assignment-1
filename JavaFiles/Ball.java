@@ -32,9 +32,9 @@ public class Ball {
       return this.ypos;
    }
    
-   private String/*No type specified!*/ velocity;
+   private String  velocity;
    
-   private void setVelocity(String/*No type specified!*/ value) {
+   private void setVelocity(String value) {
       this.velocity = value;
    }
    

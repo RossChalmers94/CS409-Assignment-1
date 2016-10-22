@@ -31,7 +31,6 @@ public class MetricsCreator {
 		// creates an input stream for the file to be parsed
 		
 		filesForUse = files;
-		System.out.println(filesForUse);
 		for(File file : filesForUse){
 		FileInputStream in = new FileInputStream(file);
 		CompilationUnit cu;

@@ -13,7 +13,7 @@ public class WeightedMethods {
 	private static int methodCounter = 0;
 	private static ArrayList<ClassOrInterfaceDeclaration> classValues = new ArrayList<ClassOrInterfaceDeclaration>();
 	private static ArrayList<MethodDeclaration> methodValues = new ArrayList<MethodDeclaration>();
-	private static HashMap<String, Integer> weightedMethods = new HashMap<String, Integer>();
+	private static HashMap<ClassOrInterfaceDeclaration, Integer> weightedMethods = new HashMap<ClassOrInterfaceDeclaration, Integer>();
 	
 	
     public WeightedMethods(ArrayList<ClassOrInterfaceDeclaration> classNames, ArrayList<MethodDeclaration> methods){
@@ -33,7 +33,7 @@ public class WeightedMethods {
 				}
 			}
 			
-			weightedMethods.put(className, methodCounter);
+			weightedMethods.put(c, methodCounter);
 			methodCounter = 0;
 		}
 	}
@@ -44,17 +44,20 @@ public class WeightedMethods {
 		System.out.println("This is a calculation of the Weighted Methods Per Class.\n");
 		for(int i = 0; i < weightedMethods.size(); i++){
 			Object[] keys = weightedMethods.keySet().toArray();
-			String classname = (String) keys[i];
-			int methodCount = weightedMethods.get(classname);
+			ClassOrInterfaceDeclaration classValue = (ClassOrInterfaceDeclaration) keys[i];
+			String classname = classValue.getName();
+			int methodCount = weightedMethods.get(classValue);
 			
-			System.out.println("The class we are analyzing is " + classname + ".");
-			System.out.println("This class has " + methodCount + " methods.");
-			if(methodCount > WMC_LIMIT){
-				System.out.println("Unfortunately, this class is over the recommeneded classes per method. "
-						+ "The Developer should consider restructuring his/her code.\n");
-			} else {
-				System.out.println("This class is under or equal to the recommended classes per method, " 
-						+ "Congratulations!\n");
+			if(!classValue.isInterface()){
+				System.out.println("The class we are analyzing is " + classname + ".");
+				System.out.println("This class has " + methodCount + " methods.");
+				if(methodCount > WMC_LIMIT){
+					System.out.println("Unfortunately, this class is over the recommeneded classes per method. "
+							+ "The Developer should consider restructuring his/her code.\n");
+				} else {
+					System.out.println("This class is under or equal to the recommended classes per method, " 
+							+ "Congratulations!\n");
+				}
 			}
 		}
 		

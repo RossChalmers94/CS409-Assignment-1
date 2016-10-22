@@ -11,7 +11,6 @@ public class NumberOfChildren {
 	
 	private static final int NOC_LIMIT = 2;
 	private static ArrayList<ClassOrInterfaceDeclaration> classValues = new ArrayList<ClassOrInterfaceDeclaration>();
-	private static HashMap<String, String> baseClass = new HashMap<String, String>();
 	private static ArrayList<String> baseClasses = new ArrayList<String>();
 	
 	
@@ -24,15 +23,14 @@ public class NumberOfChildren {
 		
 		for(int i = 0; i < classValues.size(); i++){
 			ClassOrInterfaceDeclaration c = classValues.get(i);
-			String className = c.getName();
 			String parentClass = "";
 			List<ClassOrInterfaceType> inherits = c.getExtends();
 			for(ClassOrInterfaceType inheritClass : inherits){
 				parentClass = inheritClass.toString();
 			}
-			
-			baseClass.put(className, parentClass);
-			baseClasses.add(parentClass);
+			if(!parentClass.equals("")){
+				baseClasses.add(parentClass);
+			}
 		}
 	
 	}
@@ -40,17 +38,20 @@ public class NumberOfChildren {
 		
 	public void printResult(){
 		
+		String className = "";
 		for(int i = 0; i < baseClasses.size(); i++){
-			int subClassCounter = 0;
-			String baseClass = baseClasses.get(i);
+			int subClassCounter = 1;
+			className = baseClasses.get(i);
+			baseClasses.remove(i);
 			for(int j = 0; j < baseClasses.size(); j++){
-				ClassOrInterfaceDeclaration c = classValues.get(j);
-				if(c.getExtends().contains(baseClass)){
+				String childClass = baseClasses.get(j);
+				if (className.equals(childClass)){
 					subClassCounter++;
+					baseClasses.remove(j);
 				}
 			}
 			
-			System.out.println("The class " + baseClass + " has " + subClassCounter + " children.");
+			System.out.println("Class - " + className + ". Children - " + subClassCounter);
 			if(subClassCounter > NOC_LIMIT){
 				System.out.println("This is above the recommended number of children. "
 						+ "The Developer should restructure his/her code.\n");
@@ -58,7 +59,10 @@ public class NumberOfChildren {
 			{
 				System.out.println("This is equal to or below the recommended number of children. Congratulations!\n");
 			}
+			
+			i--;
 		}
+	
 	}
 
 }
