@@ -24,6 +24,7 @@ public class AbsorberGizmo implements GizmoInterface{
 	}
 	
 	public Rectangle getRect() {
+		/* This is comment */
 		return rec;
 	}
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import Physics.Circle;
 import Physics.LineSegment;
 
-public class TriangleGizmo implements GizmoInterface {
+public class TriangleGizmo extends Model  {
 
 	private int xpos;
 	private int ypos;

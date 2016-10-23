@@ -49,6 +49,10 @@ public class BadSmellCreator {
 			parameterList.calculateParameterSize();
 		}
 		
+		classes.clear();
+		methods.clear();
+		fields.clear();
+		
 
 	}
 

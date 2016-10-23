@@ -61,8 +61,7 @@ public class createObjects {
 					if(badSmellChoice.equals("1")){
 						Boolean bloaterChoice = false;
 						while(!bloaterChoice){
-							System.out.println("S"
-									+ "elect a bloater");
+							System.out.println("Select a bloater");
 							System.out.println("1. Long Methods");
 							System.out.println("2. Large Class");
 							System.out.println("3. Long Parameter List");
@@ -78,7 +77,7 @@ public class createObjects {
 							} else if(bloaterSelect.equals("3")){
 								BadSmellCreator.setUpCompilationUnit(files, 3);
 								bloaterChoice = true;
-								bloater = true;
+								bloater = true; 						
 							} else {
 								System.out.println("Not a valid option");
 							}

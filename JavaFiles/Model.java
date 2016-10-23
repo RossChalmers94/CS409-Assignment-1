@@ -2,7 +2,7 @@ package Model;
 
 import Model.Ball;
 
-public class Model implements ModelInterface {
+public class Model  {
 
 	@Override
 	public String setGizmoArray() {

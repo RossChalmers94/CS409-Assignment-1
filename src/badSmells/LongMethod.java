@@ -44,9 +44,14 @@ public class LongMethod {
 		
 		
 		System.out.println("The class we are analyzing is " + c.getName().toString());
-		System.out.println("The methods that exceed the method line count of " + METHOD_LINE_LIMIT + " are: ");
-		for(String method : methodsOverLimit){
-			System.out.print(method + " ");
+		if(methodsOverLimit.size()>0){
+			System.out.println("The methods that exceed the method line count of " + METHOD_LINE_LIMIT + " are: ");
+			for(String method : methodsOverLimit){
+				System.out.print(method + " ");
+			}
+		}
+		else {
+			System.out.println("No methods in this class exceed the method line count");
 		}
 		System.out.println("\n");
 		

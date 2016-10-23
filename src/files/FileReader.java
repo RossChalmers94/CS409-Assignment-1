@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class FileReader {
 	
+	private static ArrayList<File> files = new ArrayList<File>();
+	
 	
 
 	public FileReader(){
@@ -14,7 +16,6 @@ public class FileReader {
 	
 	public static ArrayList<File> readFiles(File filePath){
 		
-		ArrayList<File> files = new ArrayList<File>();
 		for(File file : filePath.listFiles()){
 			if(file.isDirectory()){
 				readFiles(file);

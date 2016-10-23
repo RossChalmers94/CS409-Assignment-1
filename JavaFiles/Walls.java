@@ -1,6 +1,6 @@
 package Model;
 
-public class Walls {
+public class Walls extends Model {
    
    private int xpos1;
    

@@ -194,19 +194,16 @@ public class ClassDiagramCreator {
 					}
 				}
 			}
-		
+
 				if(classes.size() > 0){
-					for(String className : classes){
-						toReturn.append("Class: " + c.getName() + "\nAssociation: "); 
-						for(String fieldName : fieldNames){
-							toReturn.append(fieldName + " : ");
-						}
-						
-						toReturn.append(className);
+					toReturn.append("Class: " + c.getName() + "\nAssociation: "); 
+					for(int g = 0; g < classes.size(); g++){
+						toReturn.append(fieldNames.get(g) + " : " + classes.get(g)+"\n");
 					}
 				}
 				
 				classes.clear();
+				fieldNames.clear();
 		}
 			
 		

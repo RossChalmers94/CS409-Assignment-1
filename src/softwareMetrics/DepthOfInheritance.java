@@ -31,10 +31,14 @@ public class DepthOfInheritance {
 			for(ClassOrInterfaceType inheritClass : inherits){
 				parentClass = inheritClass.toString();
 			}
-			
-			inheritanceDepth.put(className, parentClass);
+			if(!parentClass.isEmpty()){
+				inheritanceDepth.put(className, parentClass);
+			} else
+			{
+				inheritanceDepth.put(className, " ");
+			}
 		}
-		
+
 		calculateDIT();
 	
 	}
@@ -45,13 +49,12 @@ public class DepthOfInheritance {
 			int inheritanceDepthCounter = 1;
 			ClassOrInterfaceDeclaration c = classValues.get(i);
 			String className = c.getName();
-			if(!inheritanceDepth.get(className).equals("")){
+			if(!inheritanceDepth.get(className).equals(" ")){
 				String parentClass = inheritanceDepth.get(className);
 				inheritanceDepthCounter++;
 				for(int j = 0; j < inheritanceDepth.size(); j++){
-					if(inheritanceDepth.get(parentClass) != null){
+					if(!inheritanceDepth.get(parentClass).equals(" ")){
 						inheritanceDepthCounter++;
-						break;
 					}
 				}
 			} else
@@ -60,8 +63,6 @@ public class DepthOfInheritance {
 			}
 			
 			System.out.println(tidyOutput(className, inheritanceDepthCounter));
-			
-			inheritanceDepthCounter = 1;
 		}
 		
 		classValues.clear();
