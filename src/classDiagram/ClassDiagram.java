@@ -47,7 +47,7 @@ public class ClassDiagram {
     
     public static class ClassDiagramVisitor extends VoidVisitorAdapter<Object> {
     	
-    	// Method to return Class Name, Inheritance & Interface.
+  
     	public void visit(ClassOrInterfaceDeclaration c, Object arg){
     	
     		classes.add(c);
@@ -56,7 +56,7 @@ public class ClassDiagram {
 
     	}
     	
-    	//Method to return class fields with their types.
+
     	public void visit(FieldDeclaration f, Object arg){
     		
     		fields.add(f);
@@ -65,7 +65,7 @@ public class ClassDiagram {
 
     	}
     	
-    	// Method to return Method names, return type, parameter list
+
     	public void visit(MethodDeclaration m, Object arg){
     		
     		methods.add(m);

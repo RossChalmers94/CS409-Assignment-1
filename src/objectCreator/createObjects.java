@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import badSmells.bloaterCreator;
+import badSmells.BadSmellCreator;
 import classDiagram.ClassDiagram;
 import files.FileReader;
 import softwareMetrics.MetricsCreator;
@@ -27,6 +27,7 @@ public class createObjects {
 
 			Scanner scan = new Scanner(System.in);
 			String input = scan.nextLine();
+			
 			
 			
 			if (input.equals("1")) {
@@ -67,15 +68,15 @@ public class createObjects {
 							System.out.println("3. Long Parameter List");
 							String bloaterSelect = scan.nextLine();
 							if(bloaterSelect.equals("1")){
-								bloaterCreator.setUpCompilationUnit(files, 1);
+								BadSmellCreator.setUpCompilationUnit(files, 1);
 								bloaterChoice = true;
 								bloater = true;
 							} else if(bloaterSelect.equals("2")){
-								bloaterCreator.setUpCompilationUnit(files, 2);
+								BadSmellCreator.setUpCompilationUnit(files, 2);
 								bloaterChoice = true;
 								bloater = true;
 							} else if(bloaterSelect.equals("3")){
-								bloaterCreator.setUpCompilationUnit(files, 3);
+								BadSmellCreator.setUpCompilationUnit(files, 3);
 								bloaterChoice = true;
 								bloater = true;
 							} else {

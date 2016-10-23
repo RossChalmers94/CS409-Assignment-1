@@ -19,7 +19,7 @@ public class NumberOfChildren {
     	classValues = classes;
     }
     
-	public void calculateNOC(){
+	public void setUp(){
 		
 		for(int i = 0; i < classValues.size(); i++){
 			ClassOrInterfaceDeclaration c = classValues.get(i);
@@ -32,11 +32,13 @@ public class NumberOfChildren {
 				baseClasses.add(parentClass);
 			}
 		}
+		
+		calculateNOC();
 	
 	}
 		
 		
-	public void printResult(){
+	public void calculateNOC(){
 		
 		String className = "";
 		for(int i = 0; i < baseClasses.size(); i++){
@@ -51,18 +53,27 @@ public class NumberOfChildren {
 				}
 			}
 			
-			System.out.println("Class - " + className + ". Children - " + subClassCounter);
-			if(subClassCounter > NOC_LIMIT){
-				System.out.println("This is above the recommended number of children. "
-						+ "The Developer should restructure his/her code.\n");
-			} else
-			{
-				System.out.println("This is equal to or below the recommended number of children. Congratulations!\n");
-			}
+			System.out.println(tidyOutput(className, subClassCounter));
 			
 			i--;
 		}
 	
+	}
+	
+	private String tidyOutput(String className, int subClassCounter){
+		
+		StringBuffer toReturn = new StringBuffer();
+		toReturn.append("Class - " + className + ".\nChildren - " + subClassCounter + ".\n");
+		if(subClassCounter > NOC_LIMIT){
+			toReturn.append("This is above the recommended number of children. "
+					+ "The Developer should restructure his/her code.\n");
+		} else
+		{
+			toReturn.append("This is equal to or below the recommended number of children. Congratulations!\n");
+		}
+		
+		return toReturn.toString();
+		
 	}
 
 }

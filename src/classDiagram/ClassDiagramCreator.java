@@ -19,6 +19,7 @@ public class ClassDiagramCreator {
 	private ArrayList<ClassOrInterfaceDeclaration> classes = new ArrayList<ClassOrInterfaceDeclaration>();
 	private ArrayList<FieldDeclaration> fields = new ArrayList<FieldDeclaration>(); 
 	private ArrayList<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
+	private ArrayList<ClassOrInterfaceDeclaration> allClasses = new ArrayList<ClassOrInterfaceDeclaration>();
 	
 	public ClassDiagramCreator(ArrayList<ClassOrInterfaceDeclaration> classValues, ArrayList<FieldDeclaration> fieldValues, 
 			ArrayList<MethodDeclaration> methodValues){
@@ -62,9 +63,15 @@ public class ClassDiagramCreator {
 			
 			System.out.println("---------------------------");
 			
+			allClasses.add(classes.get(i));
+			
 			}
 		
-		
+		System.out.println("---------------------------");
+		System.out.println("Association/Dependencies");
+		System.out.println("---------------------------");
+		System.out.println(getAssociation());
+		System.out.println("---------------------------");
 		
 	}
 	
@@ -167,6 +174,46 @@ public class ClassDiagramCreator {
 		
 		
 	}
+	
+	private String getAssociation(){
+		
+		StringBuffer toReturn = new StringBuffer();
+		ArrayList<String> classes = new ArrayList<String>();
+		ArrayList<String> fieldNames = new ArrayList<String>();
+		
+		for(int i = 0; i < allClasses.size(); i++){
+			ClassOrInterfaceDeclaration c = allClasses.get(i);
+			for(FieldDeclaration f : fields){
+				ClassOrInterfaceDeclaration parent = (ClassOrInterfaceDeclaration) f.getParentNode();
+				if(parent.equals(c)){
+					for(int j = 0; j < allClasses.size(); j++){
+						if(f.getElementType().toString().equals(allClasses.get(j).getName())){
+							classes.add(allClasses.get(j).getName());
+							fieldNames.add(f.getVariables().get(0).getId().getName());
+						}
+					}
+				}
+			}
+		
+				if(classes.size() > 0){
+					for(String className : classes){
+						toReturn.append("Class: " + c.getName() + "\nAssociation: "); 
+						for(String fieldName : fieldNames){
+							toReturn.append(fieldName + " : ");
+						}
+						
+						toReturn.append(className);
+					}
+				}
+				
+				classes.clear();
+		}
+			
+		
+		return toReturn.toString();
+	}
+	
+	
 	
 			
 		

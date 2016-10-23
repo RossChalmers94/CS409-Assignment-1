@@ -10,7 +10,6 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 public class WeightedMethods {
 	
 	private static final int WMC_LIMIT = 12;
-	private static int methodCounter = 0;
 	private static ArrayList<ClassOrInterfaceDeclaration> classValues = new ArrayList<ClassOrInterfaceDeclaration>();
 	private static ArrayList<MethodDeclaration> methodValues = new ArrayList<MethodDeclaration>();
 	private static HashMap<ClassOrInterfaceDeclaration, Integer> weightedMethods = new HashMap<ClassOrInterfaceDeclaration, Integer>();
@@ -21,9 +20,10 @@ public class WeightedMethods {
     	methodValues = methods;
     }
     
-	public void calculateWMC(){
+	public void setUp(){
 		
 		for(int i = 0; i < classValues.size(); i++){
+			int methodCounter = 0;
 			ClassOrInterfaceDeclaration c = classValues.get(i);
 			String className = c.getName();
 			for(MethodDeclaration m : methodValues){
@@ -34,12 +34,13 @@ public class WeightedMethods {
 			}
 			
 			weightedMethods.put(c, methodCounter);
-			methodCounter = 0;
 		}
+		
+		calculateWMC();
 	}
 		
 		
-	public void printResult(){
+	public void calculateWMC(){
 		
 		for(int i = 0; i < weightedMethods.size(); i++){
 			Object[] keys = weightedMethods.keySet().toArray();
@@ -48,20 +49,27 @@ public class WeightedMethods {
 			int methodCount = weightedMethods.get(classValue);
 			
 			if(!classValue.isInterface()){
-				System.out.println("The class we are analyzing is " + classname + ".");
-				System.out.println("This class has " + methodCount + " methods.");
-				if(methodCount > WMC_LIMIT){
-					System.out.println("Unfortunately, this class is over the recommeneded classes per method. "
-							+ "The Developer should consider restructuring his/her code.\n");
-				} else {
-					System.out.println("This class is under or equal to the recommended classes per method, " 
-							+ "Congratulations!\n");
-				}
+				System.out.println(tidyOutput(classname, methodCount));
 			}
 		}
 		
 		weightedMethods.clear();
-		methodCounter = 0;
+	}
+	
+	private String tidyOutput(String classname, int methodCount){
+		StringBuffer toReturn = new StringBuffer();
+		toReturn.append("The class we are analyzing is " + classname + ".\n");
+		toReturn.append("This class has " + methodCount + " methods.\n");
+		if(methodCount > WMC_LIMIT){
+			toReturn.append("Unfortunately, this class is over the recommeneded classes per method. "
+					+ "The Developer should consider restructuring his/her code.\n");
+		} else {
+			toReturn.append("This class is under or equal to the recommended classes per method, " 
+					+ "Congratulations!\n");
+		}
+		
+		return toReturn.toString();
+		
 	}
 
 }

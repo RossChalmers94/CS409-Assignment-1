@@ -18,7 +18,7 @@ public class TriangleGizmo implements GizmoInterface {
 	private LineSegment lbottom;
 	private LineSegment lright;
 	private Polygon p;
-	private Circle left,right,bottom;
+	private Model left,right,bottom;
 	private List <LineSegment> lineSeg;
 	private List <Circle> circles;
 	

@@ -48,20 +48,17 @@ public class MetricsCreator {
 		
 		if(metric == 1){
 			WeightedMethods wmc = new WeightedMethods(classes, methods);
-			wmc.calculateWMC();
-			wmc.printResult();
+			wmc.setUp();
 		}
 		
 		else if(metric == 2){
 			DepthOfInheritance dit = new DepthOfInheritance(classes);
-			dit.calculateDIT();
-			dit.printResult();
+			dit.setUp();
 		}
 		
 		else if(metric == 3){
 			NumberOfChildren noc = new NumberOfChildren(classes);
-			noc.calculateNOC();
-			noc.printResult();
+			noc.setUp();
 		}
 		
 		classes.clear();
